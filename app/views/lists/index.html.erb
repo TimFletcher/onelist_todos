@@ -1,0 +1,34 @@
+<% title 'All Your Lists' %>
+
+<% content_for :page_title do %>
+  <span class="mobile-logo">OneList</span>
+  <span id="page-title" class="rounded-6">Your Lists</span>
+<% end %>
+
+<div id="todo-list-container">
+  <h1 class="mobile">Your lists</h1>
+  <% unless @lists.blank? %>
+    <div id="lists" class="rounded-6 box-shadow">
+      <% for list in @lists %>
+        <%= render list %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_for @list, :remote => true, :html => { :class => 'clearfix rounded-6' } do |f| %>
+    <div id="text-input-wrapper">
+      <div class="rounded-4">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div id="submit-wrapper">
+      <%= submit_tag "Add", :class => 'rounded-4', :id => 'submit', :disable_with => 'Adding...'%>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :footer do %>
+  <a href="mailto:support@onelistapp.co">Email Support</a>
+  <% if not mobile_device? %>
+  <%= render :partial => 'payment_notifications/paypal_form' %>
+  <% end %>
+<% end %>

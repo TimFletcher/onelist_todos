@@ -1,0 +1,10 @@
+// Remove deleted list
+var list = $('#list_<%= @list.id %>')
+list.remove();
+
+// Remove lists container and add in 'no lists' message.
+// var lists = $('#lists')
+// if (! lists.find('> form').length) {
+//   lists.remove();
+//   $('#todo-list-container').prepend("<%= escape_javascript( render :partial => 'no_lists_message' ) %>");
+// };

@@ -1,0 +1,19 @@
+<header>
+  <a href="/" class="logo">OneList</a>
+  <%= content_for?(:page_title) ? yield(:page_title) : "" %>
+  <% if authenticated_user %>
+    <nav id="header-nav" class="header-nav">
+      <p id="toggle-nav">
+        <span><%= authenticated_user.email %></span>
+        <%= image_tag avatar_url(authenticated_user, 18) %>
+      </p>
+      <%= link_to "All Your Lists", lists_path %>
+      <% if params[:controller] == 'lists' and params[:action] == 'show'%>
+        <%= link_to "Secret Add Page", new_via_hash_token_path(:hash_token => @list.hash_token) %>
+        <%= button_to "Delete This List", @list, :method => :delete, :confirm => "Are you sure?\n\nThis list and all of its items will be permanently deleted!" %>
+      <% end %>
+      <%= link_to "Change Password", password_change_path %>
+      <%= link_to 'Logout', log_out_path %>
+    </nav>
+  <% end %>
+</header>

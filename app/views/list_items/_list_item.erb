@@ -1,0 +1,19 @@
+<div class='list_item_container<%= " checked_off" if list_item.complete %>'>
+  <%= form_for list_item,
+      :remote => true,
+      :html => { :id => "list_item_#{list_item.id}", :class => "list_item" } do |f| %>
+    <%= f.text_area :text, :id => "list_item_text_#{list_item.id}" %>
+  <% end %>
+  <%= button_to "Delete",
+      list_item,
+      :method => :delete,
+      :remote => true,
+      :form_class => 'delete_form',
+      :class => 'button delete rounded-3' %>
+  <%= button_to "Checkoff",
+      toggle_checkoff_path(list_item.id),
+      :method => :put,
+      :remote => true,
+      :form_class => 'checkoff_form',
+      :class => 'button checkoff rounded-6' %>
+</div>

@@ -1,0 +1,8 @@
+<%= form_tag get_paypal_url(), :id => 'pay_link_form' do %>
+  <%= hidden_field_tag :cmd, "_s-xclick" %>
+  <%= hidden_field_tag :encrypted,
+                       paypal_encrypted(authenticated_user,
+                                        payment_notifications_success_url,
+                                        payment_notifications_url(:shared_secret => OneListRails::Application.config.shared_secret)) %>
+  <%= submit_tag trial_expiry_display(authenticated_user), { :class => 'rounded-6', :id => 'pay-link' } %>
+<% end unless authenticated_user.paid %>

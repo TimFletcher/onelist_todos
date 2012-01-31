@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: onelist_dev
+  username:
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: onelist_test
+  username:
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: onelist_prod
+  username:
+  password:

@@ -1,0 +1,275 @@
+/* -------------- */
+/* --- Global --- */
+/* -------------- */
+
+#todo-list-container h2 {
+  text-align: center; margin: 15px 0 15px 0;
+}
+#todo-list-container form {
+  width: auto;
+}
+#todo-list-container #new_list {
+  margin-top: 5px;
+}
+
+/* --------------------------- */
+/* --- List item textareas --- */
+/* --------------------------- */
+
+#todo-item-list, #lists {
+  margin: 4px 0 0 0;
+}
+#todo-item-list form.list_item, #lists a {
+  background-color: #FFFFFF; position: relative; display: block;
+  border-bottom: 1px solid #EAEAEA; text-shadow: 0px 1px 0px white;
+  padding: 0 7px 0 34px;
+}
+#lists a {
+  padding: 10px 12px 7px 12px;
+}
+#lists a:hover {
+  color: #CCCCCC;
+}
+#lists a {
+  background: #FFFFFF url(<%= asset_path 'icon-next-arrow.png' %>) 100% 50% no-repeat;
+  border-right: 12px solid transparent; padding: 10px 25px 7px 13px;
+}
+#todo-item-list div:first-child form.list_item:first-child,
+#lists a:first-child {
+  border-top-left-radius: 6px; /*MOZ????*/
+  border-top-right-radius: 6px;
+}
+#todo-item-list div:last-child form.list_item:first-child,
+#lists a:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+#todo-item-list div:first-child form.list_item:first-child {
+  margin-top: 5px;
+}
+#todo-item-list textarea {
+  border: none; background-color: transparent; outline: none; width: 100%;
+  height: 15px; /* Fucks up when it's multiline */
+  display: block; padding-top: 10px; padding-bottom: 7px; resize: none; line-height: 1.3em;
+  -webkit-appearance: none;
+}
+#todo-item-list form.list_item.focus {
+  background-color: #FFF9C2;
+}
+#todo-item-list div {
+  position: relative;
+}
+.button {
+  text-decoration: none; color: #FFFFFF;
+  padding: 3px 5px; line-height: 1em;
+  text-shadow: #000000 0px 1px 0px;
+}
+#todo-item-list .delete_form {
+  position: absolute; right: 7px; top: 6px; display: none;
+}
+#todo-item-list .checked_off .delete_form {
+  display: block;
+}
+#todo-item-list .delete {
+  border-left: none; border: 1px solid #A30E02;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D51202), to(#B30F02));
+  background: -moz-linear-gradient(top, #D51202, #B30F02);
+}
+#todo-item-list .delete:hover {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#B30F02), to(#D51202));
+  background: -moz-linear-gradient(top, #B30F02, #D51202);
+  color: #FFFFFF;
+}
+#todo-item-list .checkoff_form {
+  position: absolute; top: 0px; left: 0px;
+}
+#todo-item-list .checkoff {
+  border: none; width: 36px; height: 34px; text-indent: -9999em;
+  background: url(<%= asset_path 'icon-checkbox-unchecked.png' %>) 50% 50% no-repeat;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+#todo-item-list .checked_off .checkoff {
+  background: url(<%= asset_path 'icon-checkbox-checked.png' %>) 50% 50% no-repeat;
+}
+#todo-item-list .checked_off textarea {
+  text-decoration: line-through; color: #AAAAAA;
+}
+
+/* Retina display graphics */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  #todo-item-list .checkoff {
+    background: url(<%= asset_path 'icon-checkbox-unchecked@2x.png' %>) 50% 50% no-repeat;
+    background-size: 22px 22px;
+  }
+  #todo-item-list .checked_off .checkoff {
+    background: url(<%= asset_path 'icon-checkbox-checked@2x.png' %>) 50% 50% no-repeat;
+  }
+  body:after { /* Image preloading */
+    content: url(<%= asset_path 'icon-checkbox-unchecked@2x.png' %>)
+             url(<%= asset_path 'icon-checkbox-checked@2x.png' %>);
+    display: none;
+  }
+}
+
+/* Lists */
+
+#lists a:hover {
+  background-color: #FFF9C2;
+}
+#lists h2 {
+  font: 13px/1.2em Helvetica, sans-serif; text-align: left;
+  color: #000000; font-weight: bold; display: block; margin: 0 0 1px 0;
+}
+#lists span {
+  color: #AAAAAA; display: block; font-size: 12px;
+}
+.edit_list {
+  margin: 0 auto; padding-top: 9px; width: 1000px; position: absolute; margin-left: -500px; left: 50%;
+}
+.edit_list input {
+  text-align: center; color: #EEEEEE; font-family: 'Lobster', cursive;
+  font-size: 18px; font-weight: normal;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+.edit_list input:focus {
+  color: #FFFFFF;
+}
+#edit_list_mobile {
+  display: none;
+}
+@media only screen and (max-width: 480px) {
+  header {
+    height: 50px;
+  }
+  #page-title {
+    display: none;
+  }
+  #page-title a {
+    color: #FFFFFF;
+  }
+  #back-button {
+    position: absolute; left: 10px; top: 10px; margin: 0; padding: 5px;
+    width: auto; font-weight: bold; font-size: 1.2em; line-height: 1.2em;
+    border: 1px solid #533C0B; display: inline-block;
+    background-color: #2A1E05 ;
+    text-align: center; text-shadow: 0 2px 0 #000000;
+  }
+  #todo-item-list, #lists {
+    margin: 0;
+  }
+  #todo-item-list {
+    margin-bottom: 5px;
+  }
+  #todo-item-list form.list_item {
+    font-size: 14px; padding-left: 40px; 
+  }
+  #todo-item-list form.list_item textarea {
+    padding-top: 12px; padding-bottom: 11px; font-weight: bold;
+  }
+  #todo-item-list .checkoff {
+    width: 44px; height: 40px;
+  }
+  #todo-item-list .delete_form {
+    top: 6px; right: 5px;
+  }
+  #todo-item-list .delete {
+    padding: 6px 9px 6px 9px; font-size: 16px;
+  }
+  #lists footer, .edit_list {
+    display: none;
+  }
+  #edit_list_mobile {
+    display: block;
+    margin: 0 auto; padding-top: 0; width: auto; position: static;
+    text-align: center; display: block; height: 30px;
+  }
+  #edit_list_mobile input, #todo-list-container h1 {
+    font-size: 20px; text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+    font-weight: normal; height: 30px;
+  }
+  #todo-list-container h1 {
+    margin: 1px 0 4px 0;
+  }
+  #lists h2 {
+    font-size: 16px;
+  }
+}
+
+/* -------------------------------------- */
+/* --- Add textarea and submit button --- */
+/* -------------------------------------- */
+
+#new_list_item, #new_list {
+  background-color: #DDDDDD; padding: 5px 6px 6px 6px; margin-top: 4px;
+  -webkit-box-shadow: 0 1px 3px #222222;
+     -moz-box-shadow: 0 1px 3px #222222;
+          box-shadow: 0 1px 3px #222222;
+}
+#new_list_item button span, #new_list button span {
+  font-size: 10px;
+}
+#new_list #errors {
+  margin: 0; list-style-type: none; padding-top: 5px; clear: left;
+}
+#new_list #errors li {
+  background-color: #D51202; display: block; font-size: 12px;
+  border: 1px solid #A30E02; padding: 1px 5px; color: #FFFFFF;
+}
+#textarea-wrapper, #text-input-wrapper {
+  width: 80%; float: left;
+}
+#textarea-wrapper div, #text-input-wrapper div {
+  border: 1px solid #CCCCCC; background-color: #FFFFFF; outline: none;
+  padding: 0 8px;
+}
+#textarea-wrapper textarea, #list_name {
+  display: block; width: 100%; padding: 8px 0; border: none; outline: none;
+  background-color: transparent; -webkit-appearance: none; resize: none;
+}
+#list_name {
+  padding: 0;
+}
+#index #list_name {
+  padding: 8px 0;
+}
+#textarea-wrapper div.waiting {
+  background: #CCCCCC url(<%= asset_path 'ajax-loader.gif' %>) 50% 50% no-repeat;
+}
+#submit-wrapper {
+  width: 20%; float: left;
+}
+#submit-wrapper input {
+  width: 95%; float: right; display: block; padding: 0; border: 0;
+  margin: 0; background-color: #EEEEEE; border: 1px solid #CCCCCC;
+  -webkit-appearance: none; color: #333333;
+}
+#submit-wrapper #submit {
+  height: 33px;
+}
+#submit-wrapper input:hover {
+  background-color: #FAFAFA;
+}
+#new_list_item #submit-wrapper #submit {
+  height: 48px;
+}
+@media only screen and (max-width: 480px) {
+  #textarea-wrapper textarea, #list_name {
+    font-size: 16px; font-weight: bold; height: 40px;
+  }
+  #submit-wrapper input {
+    font-size: 16px;
+  }
+  #new_list #submit,
+  #new_list_item #submit-wrapper #submit {
+    height: 58px;
+  }
+  #new_list {
+    margin-bottom: 4px; margin-top: 4px;
+  }
+  #new_via_hash_token .transparent {
+    margin-bottom: 30px;
+  }
+}

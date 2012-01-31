@@ -1,0 +1,15 @@
+<% title "Trial Expired" %>
+
+<% content_for :page_title do %>
+  <span class="mobile-logo">OneList</span>
+<% end %>
+
+<h1>Trial Expired!</h1>
+<div id="homepage-container" class="clearfix">
+  <div id="content" class="transparent rounded-6 mobile-margin">
+    <p class="no-margin">Thanks for trying out OneList. In order to
+      continue providing this really cool service, we need
+      to charge a small fee.<br/>We'd love you to support us.</p>
+  </div>
+  <%= render :partial => 'payment_notifications/paypal_form' %>
+</div>

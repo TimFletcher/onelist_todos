@@ -1,0 +1,35 @@
+<% title 'Join' %>
+
+<% content_for :page_title do %>
+  <span class="mobile-logo">OneList</span>
+<% end %>
+
+<h1>Join</h1>
+
+<%= form_for @user, :html => { :novalidate => 'novalidate' } do |f| %>
+
+  <div class="input rounded-3">
+    <%= f.label :email %>
+    <%= f.email_field :email, { :autocorrect => "off", :autocapitalize => "off" } %>
+    <%= render 'shared/error_message', :errors => @user.errors[:email] %>
+  </div>
+
+  <div class="input rounded-3">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= render 'shared/error_message', :errors => @user.errors[:password] %>
+  </div>
+
+  <div class="input rounded-3">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= render 'shared/error_message', :errors => @user.errors[:password_confirmation] %>
+  </div>
+
+  <%= submit_tag "Register", :class => 'rounded-3', :id => 'submit' %>
+
+<% end %>
+
+<% content_for :footer do %>
+<%= link_to "Already have an account? Login", log_in_path %>
+<% end %>

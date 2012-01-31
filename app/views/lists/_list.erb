@@ -1,0 +1,4 @@
+<%= link_to list do %>
+  <h2 class="name"><%= list.name %></h2>
+  <span><%= pluralize list.list_items_count, 'Item' %>, <%= list.list_items_completed_count %> completed</span>
+<% end %>

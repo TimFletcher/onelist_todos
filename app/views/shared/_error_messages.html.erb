@@ -1,0 +1,7 @@
+<% if target.errors.include? :base %>
+  <p id="form-level-error" class="rounded-2">
+    <% for message in target.errors.get :base %>
+      <%= message %>
+    <% end %>
+  </p>
+<% end %>

@@ -1,0 +1,24 @@
+<% content_for :page_title do %>
+  <span class="mobile-logo">OneList</span>
+<% end %>
+
+<h1>Add to <%= @list.name %></h1>
+
+<div id="content" class="transparent rounded-6 mobile-margin">
+  <p class="no-margin">Bookmark this page to add items to your list quickly and easily without being logged in.</p>
+</div>
+
+<div id="todo-list-container">
+  <%= form_for [@list, @list_item], :url => create_via_hash_token_path, :remote => true, :html => { :class => 'clearfix rounded-6' } do |f| %>
+    <div id="textarea-wrapper">
+      <div class="rounded-4">
+        <%= f.text_area :text, :rows => 0 %>
+      </div>
+      <%= hidden_field_tag 'hash_token', params[:hash_token] %>
+    </div>
+    <div id="submit-wrapper">
+      <%= submit_tag "Add", :class => 'rounded-4', :id => "submit", :disable_with => 'Adding...'%>
+    </div>
+    <div class="errors"></div>
+  <% end %>
+</div>

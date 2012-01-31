@@ -1,0 +1,42 @@
+var form = $('#new_list_item');
+
+<% if @list_item.errors.any? %>
+  // Create a list of errors and display on the form
+  var errors = $('<ul />');
+  <% @list_item.errors.full_messages.each do |error| %>
+    errors.append('<li><%= escape_javascript( error ) %></li>');
+  <% end %>
+  form.find('.errors').html(errors);
+<% else %>
+  <% if params['hash_token'] %>
+    msg =  "<ul id='flash-messages'>";
+    msg += "  <li class='message-notice'>Item added successfully</li>";
+    msg += "</ul>";
+    $(msg).appendTo('header').delay(2500).fadeOut(300);
+  <% else %>
+    // Insert the list item partial, bind the autoresize and trigger autoresizing
+    $('#todo-item-list')
+      .append("<%= escape_javascript( render @list_item ) %>")
+      .find('#list_item_<%= @list_item.id %> textarea')
+      .autoResize({
+        animate: false,
+        extraSpace : 0
+      }).trigger('change');
+  <% end %>
+
+  // Clear form and focus textarea
+  form.find('textarea').val('').focus();
+
+<% end %>
+
+// Bind event to handle saving of this list item. This code is executed
+// in a response from the server so we don't need to live bind. This
+// function is already defined in list_items.js.coffee as updateHandler
+// but I can't seem to use it...
+$('#todo-item-list textarea:odd').bind('change', function(){
+    textarea = $(this);
+    form = textarea.parent()
+    textarea.val().trim().length ? form.submit() : form.next().submit()
+});
+
+// Bind events to delete button too....

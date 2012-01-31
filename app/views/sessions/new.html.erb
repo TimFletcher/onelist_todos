@@ -1,0 +1,37 @@
+<% title 'Login' %>
+
+<% content_for :page_title do %>
+  <span class="mobile-logo">OneList</span>
+<% end %>
+
+<h1>Existing Users</h1>
+
+<%= form_for @session, :class => 'clearfix onelist-form', :id => 'login-form', :novalidate => 'novalidate' do |f| %>
+
+  <%= render 'shared/error_messages', :target => @session %>
+
+  <div class="input rounded-3">
+    <%= f.label :email, :class => 'inlined'  %>
+    <%= f.email_field :email, { :autocorrect => "off", :autocapitalize => "off" } %>
+    <%= render 'shared/error_message', :errors => @session.errors[:email] %>
+  </div>
+
+  <div class="input rounded-3">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= render 'shared/error_message', :errors => @session.errors[:password] %>
+  </div>
+
+  <div class="checkbox clearfix">
+    <%= label_tag :forget, "Do not remember me" %>
+    <%= check_box_tag :forget %>
+  </div>
+
+  <%= submit_tag "Log In", :class => 'rounded-3', :id => 'submit' %>
+
+<% end %>
+
+<% content_for :footer do %>
+<%= link_to "forget?", password_reset_form_path %> &bull;
+<%= link_to "I'm new here", register_path %>
+<% end %>

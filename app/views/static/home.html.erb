@@ -1,0 +1,17 @@
+<div id="homepage-container" class="clearfix">
+  <p class="logo rounded-3">OneList</p>
+  <div id="content" class="transparent rounded-6 mobile-margin">
+    <p class="no-margin">Finally, a minimalist todo list that doesn't get in your way.</p>
+  </div>
+	<%= link_to "Log In", log_in_path, :id => 'login-button', :class => 'homepage-button lobster rounded-6 box-shadow' %>
+	<%= link_to "Sign Up", register_path, :id => 'register-button', :class => 'homepage-button lobster rounded-6 box-shadow'  %>
+</div>
+
+<video class="sublime" width="960" height="600" poster="video-poster.jpg" preload="none">
+  <source src="http://lift-screencasts.s3.amazonaws.com/alberta-milk/01-monthly-articles.mov" />
+</video>
+
+<% content_for :footer do %><% end %>
+<% content_for :header_js do %>
+<script type="text/javascript" src="http://cdn.sublimevideo.net/js/tkpk88c1.js"></script>
+<% end %>

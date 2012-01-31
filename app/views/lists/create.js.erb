@@ -1,0 +1,33 @@
+<% if @list.errors.any? %>
+
+  errors = $('#errors');
+  if (errors) {
+    errors.remove();
+  };
+
+  var errors = $('<ul id="errors" />');
+  <% @list.errors.full_messages.each do |error| %>
+    errors.append('<li class="rounded-3"><%= escape_javascript( error ) %></li>');
+  <% end %>
+  $('#new_list').append(errors);
+
+<% else %>
+
+  partial = "<%= escape_javascript( render @list ) %>";
+
+  // If this is the first item, remove the help text
+  // content = $('#content');
+  
+  if ( ! $('#lists').length) {
+    block =  "<div id='lists' class='rounded-6 box-shadow'>";
+    block += "  " + partial
+    block += "</div>";
+    $('#todo-list-container').prepend(block);
+  } else{
+    block = partial
+    $('#lists').append(block);
+  }
+
+  // Clear form and focus input
+  $('#list_name').val('').focus();
+<% end %>

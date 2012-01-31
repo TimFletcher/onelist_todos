@@ -1,0 +1,53 @@
+<% title "#{@list.name}" %>
+
+<% content_for :page_title do %>
+  <%= link_to "Your lists".html_safe, lists_path, :id => 'back-button', :class => 'rounded-4' %>
+  <%= form_for @list, :remote => true do |f| %>
+    <%= f.text_field :name, { :autocorrect => "off", :autocapitalize => "off" } %>
+  <% end %>
+<% end %>
+
+<div id="todo-list-container">
+  <%= form_for @list, :remote => true, :html => { :id => 'edit_list_mobile' } do |f| %>
+    <%= f.text_field :name, { :autocorrect => "off", :autocapitalize => "off" } %>
+  <% end %>
+  <% if @list.list_items %>
+  <div id="todo-item-list" class="rounded-6 box-shadow">
+    <% for list_item in @list.list_items %>
+    <%= render list_item if list_item.id %>
+    <% end %>
+  </div>
+  <% end %>
+  <%= form_for [@list, @list_item], :remote => true, :html => { :class => 'clearfix rounded-6' } do |f| %>
+    <div id="textarea-wrapper">
+      <div class="rounded-4">
+        <%= f.text_area :text, :rows => 0 %>
+      </div>
+    </div>
+    <div id="submit-wrapper">
+      <%= submit_tag "Add", :class => 'rounded-4', :id => 'submit', :disable_with => 'Adding...'%>
+    </div>
+    <div class="errors"></div>
+  <% end %>
+</div>
+
+<% content_for :sidebar do %>
+  <div id="sidebar">
+    <div class="rounded-6">
+      <h2>Keyboard Shortcuts</h2>
+      <ul id="key-commands">
+        <li><strong>up arrow</strong> : Previous list item</li>
+        <li><strong>down arrow</strong> : Next list item</li>
+        <li><strong>enter</strong> : Save item and move to next</li>
+        <li><strong>command / ctrl + delete</strong> : Delete item</li>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+  <a href="mailto:support@onelistapp.co">Email Support</a>
+  <% if not mobile_device? %>
+  <%= render :partial => 'payment_notifications/paypal_form' %>
+  <% end %>
+<% end %>

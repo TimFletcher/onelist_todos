@@ -1,0 +1,21 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    errors:
+      messages:
+        blank: "Required"
+        uniqueness: "taken"
+        confirmation: "Must match"
+    attributes:
+      user:
+        password_confirmation: Confirm Password
+      list:
+        name: List Name
+  activemodel:
+    errors:
+      messages:
+        blank: "Required"
+  validation:
+    email_format: "Invalid Email"

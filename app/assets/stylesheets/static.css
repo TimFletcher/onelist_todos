@@ -1,0 +1,29 @@
+/* ---------------- */
+/* --- Homepage --- */
+/* ---------------- */
+
+#home .logo {
+  text-align: center; float: none; font-size: 40px; color: #FFFFFF;
+  background-color: transparent; margin: 30px auto 35px auto;
+  display: block; position: static; text-shadow: 0 2px 1px rgba(0, 0, 0, 0.8);
+}
+.homepage-button {
+  float: left; background-color: #DDDDDD; width: 48%; text-align: center;
+  min-height: 30px; color: #333333; font-size: 22px; padding: 7px 0 5px 0;
+  line-height: 1.2em; text-shadow: #FFFFFF 0px 1px 0px;
+}
+.homepage-button span {
+  color: #3A6682;
+}
+.homepage-button:hover {
+  color: #333333; background-color: #FFFFFF;
+}
+#register-button {
+  float: right;
+}
+@media only screen and (max-width: 480px) {
+  #login-button, #register-button {
+    display: block; float: none; width: auto; padding: 6px 0 10px 0;
+    margin: 10px; font-size: 30px;
+  }
+}
